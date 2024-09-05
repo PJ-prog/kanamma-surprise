@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanammaa's Surprise</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding-top: 20%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: gold;
+            animation: flicker 1.5s infinite alternate;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .rocket {
+            position: relative;
+            width: 100px;
+            height: 200px;
+            background: red;
+            margin: 0 auto;
+            border-radius: 50%;
+            animation: fly 2s infinite ease-in-out;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(200px); }
+            100% { transform: translateY(-300px); }
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: yellow;
+            border-radius: 50%;
+            animation: burst 1s ease-out;
+        }
+
+        @keyframes burst {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .lights {
+            background: radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(0,255,0,1) 50%, rgba(0,0,255,1) 100%);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            animation: colorful 2s infinite alternate;
+        }
+
+        @keyframes colorful {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>YOU ARE THE BEST KANAMMAA!</h1>
+
+    <div class="rocket"></div>
+    <div class="lights"></div>
+
+    <script>
+        // Function to create random fireworks
+        function createFirework() {
+            var firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * window.innerWidth + 'px';
+            firework.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(firework);
+
+            setTimeout(function() {
+                firework.remove();
+            }, 1000); // Remove the firework after 1 second
+        }
+
+        // Create fireworks at random intervals
+        setInterval(createFirework, 300); // Every 300ms create a firework
+
+    </script>
+
+</body>
+</html>
